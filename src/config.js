@@ -1,5 +1,5 @@
 const config = {
-    weatherApiKey : '4d46438c1b30a5f0d9344f39aa4a6e94'
+    apiUrl : 'http://localhost:5000'
 }
 
 export default config;

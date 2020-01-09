@@ -1,16 +1,19 @@
-import React, { useState }  from 'react'
+import React from 'react'
 import axios from 'axios'
-
 import Select from 'react-select'
 
-const data = require('../../data/city.list.json');
+import config from '../../config'
+
+
 
 export default class NewLocation extends React.Component{
     constructor(props){
         super(props)   
         this.state = {
             locations : [],
-            cityName : ""
+            cityName : "",
+            cities : [],
+            selectedCity : null
         }
     }
 
@@ -22,18 +25,31 @@ export default class NewLocation extends React.Component{
      * Set City Name
      */
     setCityName(e){
-        const {locations} = this.state
-        const cities = (locations.length === 0 ) ? data : locations;
+        const cityName = e.target.value
+
+        window.fetch(`${config.apiUrl}/search?city=${cityName}`)
+        .then(response => {
+            if(response.status !== 200)
+                return
+            
+            return response.json()
+        })
+        .then((data)=>{
+            console.log(data)
+            this.setState({
+                cityName : cityName,
+                cities : data
+            },()=>{
+                console.log(this.state);
+                
+            })
+        }).catch(err => console.log(err));
+    }
+
+    onChange(value){
+        console.log(value);
         this.setState({
-            cityName : e.target.value,
-            // Call NODE API
-            // locations : (e.target.value.length < 2) ? [] : cities
-            //         .filter( city => {
-            //             var pattern = e.target.value.split("").map((x)=>{
-            //                 return `(?=.*${x})`
-            //             }).join("");    var regex = new RegExp(`${pattern}`, "g")    
-            //             return city.name.match(regex);
-            //         }).slice(0,40).map((city)=>( { value : city.name , label : city.name }))
+            selectedCity : value
         })
     }
 
@@ -41,14 +57,14 @@ export default class NewLocation extends React.Component{
      * Add new Location
      */
 
-    addLocation(cityName){
-        if(cityName.length < 3)
-            return;
+    addLocation(){
+        const {selectedCity} = this.state
 
         const {locations} = this.state    
         //Add new location
-        locations.push(cityName)
-
+        locations.push(selectedCity)
+        console.log("Adding!");
+        
         this.setState({
             locations : locations
         },()=>{
@@ -57,12 +73,12 @@ export default class NewLocation extends React.Component{
     }
 
     render(){
-        const {locations,cityName} = this.state
-        console.log(locations)
+        const {cities} = this.state
+        
         return (
             <div >
-                <Select options={locations} onKeyDown={this.setCityName.bind(this)} isClearable ignoreAccents={false}/>
-                <button onClick={() => this.addLocation(cityName)}>Add</button>
+                <Select options={cities} onKeyDown={this.setCityName.bind(this)} isClearable ignoreAccents={false} onChange={this.onChange.bind(this)} />
+                <button onClick={() => this.addLocation()}>Add</button>
             </div>
         )
     }
