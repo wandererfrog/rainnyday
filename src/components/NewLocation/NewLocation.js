@@ -10,15 +10,11 @@ export default class NewLocation extends React.Component{
     constructor(props){
         super(props)   
         this.state = {
-            locations : [],
+            locations : JSON.parse(window.localStorage.getItem("locations")),
             cityName : "",
             cities : [],
             selectedCity : null
         }
-    }
-
-    componentDidMount(){
-        
     }
 
     /**
@@ -27,7 +23,7 @@ export default class NewLocation extends React.Component{
     setCityName(e){
         const cityName = e.target.value
 
-        window.fetch(`${config.apiUrl}/search?city=${cityName}`)
+        window.fetch(`${config.apiUrl}/v1/search?city=${cityName}`)
         .then(response => {
             if(response.status !== 200)
                 return
