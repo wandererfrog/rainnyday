@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { getCurrentWeatherData , getWeatherForecast } from '../../services/Api'
+import { getWeatherData } from '../../services/Api'
 
 import Header from '../Header/Header'
 import Temperature from '../Temperature/Temperature'
@@ -10,27 +10,25 @@ import TemperatureGraph from '../TemperatureGraph/TemperatureGraph'
 
 function LocationCard({location}){
     const [data,setData] = useState(null)
-    const [forecastData,setForecastData] = useState(null)
+    const [fetchedData,setFetchedData] = useState(false)
 
     if(!location){
         return null;
     }
    
-    if(!data){
-        getCurrentWeatherData({
-            q : location.value,
-            units : 'metric'
-        }).then((resp)=> {
-            setData(resp)
-        })
+    console.log(data,fetchedData,location.label)
 
-        getWeatherForecast({
+    if(!data && !fetchedData){
+        getWeatherData({
+            q : location.value,
             id : location.id,
             units : 'metric'
         }).then((resp)=> {
-            setForecastData(resp)
+            setData(resp)
+            console.log("Response:"+resp);
         })
 
+        setFetchedData(true)
     }
     
     if(!data)
@@ -41,31 +39,32 @@ function LocationCard({location}){
             <Header location={location.label} />
             <div className="row">
                 <div className="col-8">
-                    <Temperature temp={data.main.temp} feelsLike={data.main['feels_like']} />
+                    <Temperature temp={data.current.main.temp} feelsLike={data.current.main['feels_like']} />
                 </div>
                 <div className="col-8">
-                    <WeatherIcon iconId={data.weather[0].id} description={data.weather[0].description}/>
+                    <WeatherIcon iconId={data.current.weather[0].id} description={data.current.weather[0].description}/>
                 </div>
             </div>
             <div className="row">
                 <div className="col-5">
-                    <WeatherData wind={data.wind} humidity={data.main.humidity} rain={data.rain} snow={data.snow} />
+                    <WeatherData wind={data.current.wind} humidity={data.current.main.humidity} rain={data.current.rain} snow={data.current.snow} />
                 </div>
             </div>
-            <div className="row">
+           <div className="row">
                 <div className="col-12">
-                    <TemperatureGraph data={(!forecastData) ? null : forecastData} />
+                    <TemperatureGraph data={(!data.graph) ? null : data.graph} />
                 </div>
             </div>
+            
             <div className="row">
                 {
-                    (!forecastData) ? null : forecastData.list.map((day) => (
-                        <DayForecast data={day}/>
+                    (!data.forecast) ? null : Object.keys(data.forecast).map((day,idx) => (
+                        <DayForecast key={idx} data={data.forecast[day]} />
                     ))
                 }
                 <div className="col-4">
 
-                </div>
+                </div> 
             </div>
         </div>
     )
