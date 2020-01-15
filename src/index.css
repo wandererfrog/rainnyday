@@ -1,4 +1,13 @@
+@import './css/simple-grid.min.css';
+@import './css/owfont-regular.min.css';
+@import './css/components/index.css';
+
+html , body{
+    background-color: #20262d !important;
+}
+
 body {
+  color: #ffffff !important;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,3 +20,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

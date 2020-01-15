@@ -1,16 +1,15 @@
 import React from 'react'
-import axios from 'axios'
 import Select from 'react-select'
 
 import config from '../../config'
+import './NewLocation.css'
+import { withRouter } from 'react-router-dom'
 
-
-
-export default class NewLocation extends React.Component{
+class NewLocation extends React.Component{
     constructor(props){
         super(props)   
         this.state = {
-            locations : JSON.parse(window.localStorage.getItem("locations")),
+            locations : JSON.parse(window.localStorage.getItem("locations")) || [],
             cityName : "",
             cities : [],
             selectedCity : null
@@ -31,19 +30,14 @@ export default class NewLocation extends React.Component{
             return response.json()
         })
         .then((data)=>{
-            console.log(data)
             this.setState({
                 cityName : cityName,
                 cities : data
-            },()=>{
-                console.log(this.state);
-                
             })
         }).catch(err => console.log(err));
     }
 
     onChange(value){
-        console.log(value);
         this.setState({
             selectedCity : value
         })
@@ -55,16 +49,17 @@ export default class NewLocation extends React.Component{
 
     addLocation(){
         const {selectedCity} = this.state
+        const {history} = this.props
 
         const {locations} = this.state    
         //Add new location
         locations.push(selectedCity)
-        console.log("Adding!");
         
         this.setState({
             locations : locations
         },()=>{
             window.localStorage.setItem("locations",JSON.stringify(locations))
+            history.push('/')
         })
     }
 
@@ -72,10 +67,16 @@ export default class NewLocation extends React.Component{
         const {cities} = this.state
         
         return (
-            <div >
-                <Select options={cities} onKeyDown={this.setCityName.bind(this)} isClearable ignoreAccents={false} onChange={this.onChange.bind(this)} />
-                <button onClick={() => this.addLocation()}>Add</button>
+            <div className="new-container container">
+                <div className="new-inner-container">
+                    <Select options={cities} onKeyDown={this.setCityName.bind(this)} isClearable ignoreAccents={false} onChange={this.onChange.bind(this)} />
+                    <button className="rn-btn rn-btn-add" onClick={() => this.addLocation()}>Add +</button>
+                    <br />or<br />
+                    <button className="rn-btn rn-btn-getpos" onClick={null}>Get position</button>
+                </div>
             </div>
         )
     }
 }
+
+export default withRouter(NewLocation)

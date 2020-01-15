@@ -9,7 +9,6 @@ import App from './App'
 import NewLocation from './components/NewLocation/NewLocation'  
 
 function routes(){
-    console.log(12312)
     return (
         <Router>
             <Switch>
