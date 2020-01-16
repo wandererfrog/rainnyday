@@ -8,4 +8,6 @@
 .new-inner-container{
     width: 80%;
     max-width: 360px;
+    text-align: center;
+    color:#fff;
 }

@@ -24,7 +24,7 @@ export default function TemperatureGraph({data}){
     })
 
     return (
-        <ResponsiveContainer width="90%" height={220}>
+        <ResponsiveContainer width="95%" height={220}>
             <AreaChart data={temps}
                 margin={{top: 5, right: 0, left: -30, bottom: 5}}>
                 <XAxis dataKey="label" fontSize={10} />

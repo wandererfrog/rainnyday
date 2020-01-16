@@ -31,7 +31,6 @@ class App extends React.Component {
           {
             locations.map((local,idx) => <LocationCard location={local} key={idx} /> )
           }
-          <NewLocation />
         </Slider>
       </div>
     );

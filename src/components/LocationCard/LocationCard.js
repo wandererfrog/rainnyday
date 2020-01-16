@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { getWeatherData } from '../../services/Api'
+import ScaleLoader from 'react-spinners/ScaleLoader'
 
 import Header from '../Header/Header'
 import Temperature from '../Temperature/Temperature'
@@ -30,7 +31,9 @@ function LocationCard({location}){
     }
     
     if(!data)
-        return <h6>Loading</h6>
+        return (
+            <span className="loading-spinner"><ScaleLoader size={42} loading color={"#429dac"}/></span>
+        )
         
     return (
         <div className="location-card">

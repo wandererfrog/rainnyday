@@ -1,0 +1,52 @@
+.day-forecast-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.5);
+    margin-top: 10px;
+    padding-bottom: 10px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.day-forecast-prediction{
+    width: 115px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.day-forecast-label{
+    width: 40%;
+    max-width: 150px;
+    color: #f9f9f9;
+    font-weight: 300;
+}
+
+.day-forecast-temp{
+    width: 46px;
+    text-align: center;
+    color: #f9f9f9;
+}
+
+.day-forecast-prediction-temp{
+    margin-left: 8px;
+}
+.day-forecast-prediction-temp-icon{
+    font-size: 14px;
+}
+
+.day-forecast-prediction-temp-text{
+    color:#ffffff;
+    font-size: 16px;
+    margin-left: 2px;
+}
+
+.max_temperature{
+    color:#9f6464;
+}
+
+.min_temperature{
+    color:#429dac;
+}

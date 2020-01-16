@@ -4,5 +4,10 @@
   height: 700px;
   width: 100%;
   background-color: #20262d;
+}
 
+.loading-spinner{
+  position: fixed;
+  top: 45vh;
+  left: 21%;
 }
