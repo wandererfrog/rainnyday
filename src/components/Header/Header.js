@@ -1,4 +1,5 @@
 import React from 'react'
+import './Header.css'
 
 export default function({location}){
     const date = new Date();

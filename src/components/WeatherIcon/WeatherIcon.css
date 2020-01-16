@@ -1,0 +1,18 @@
+.weather-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+    padding-top: 31px;
+}
+
+.weather-description{
+    font-size: 0.9em;
+    color:#f9f9f9;
+    font-weight: 300;
+}
+
+.weather-icon{
+    font-size: 96px;
+    color: #f9f9f9;
+}

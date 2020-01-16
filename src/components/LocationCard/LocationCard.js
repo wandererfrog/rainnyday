@@ -15,8 +15,6 @@ function LocationCard({location}){
     if(!location){
         return null;
     }
-   
-    console.log(data,fetchedData,location.label)
 
     if(!data && !fetchedData){
         getWeatherData({
@@ -38,10 +36,10 @@ function LocationCard({location}){
         <div className="location-card">
             <Header location={location.label} />
             <div className="row">
-                <div className="col-8">
+                <div className="col-6-sm">
                     <Temperature temp={data.current.main.temp} feelsLike={data.current.main['feels_like']} />
                 </div>
-                <div className="col-8">
+                <div className="col-6-sm">
                     <WeatherIcon iconId={data.current.weather[0].id} description={data.current.weather[0].description}/>
                 </div>
             </div>

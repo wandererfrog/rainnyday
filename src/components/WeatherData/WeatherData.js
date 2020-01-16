@@ -1,4 +1,5 @@
 import React from 'react'
+import './WeatherData.css'
 
 export default function WeatherData({humidity,wind,rain,snow}){
     

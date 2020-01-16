@@ -1,0 +1,18 @@
+.temperature-feels-like{
+    font-size: 0.9em;
+    color:#f9f9f9;
+    font-weight: 300;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.temperature-container{
+    
+}
+
+.temperature-value{
+    font-size: 80px;
+    font-weight: 100;
+    color:#f9f9f9;
+    text-align: center;
+}
