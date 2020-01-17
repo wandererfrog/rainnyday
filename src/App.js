@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Slider from "react-slick";
 
 import LocationCard from './components/LocationCard/LocationCard'
-import NewLocation from './components/NewLocation/NewLocation'
+import AddLocation from './components/AddLocation/AddLocation'
 
 import './App.css';
 
@@ -31,6 +31,7 @@ class App extends React.Component {
           {
             locations.map((local,idx) => <LocationCard location={local} key={idx} /> )
           }
+          <AddLocation />
         </Slider>
       </div>
     );

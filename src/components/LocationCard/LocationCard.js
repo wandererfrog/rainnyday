@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { getWeatherData } from '../../services/Api'
-import ScaleLoader from 'react-spinners/ScaleLoader'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 import Header from '../Header/Header'
 import Temperature from '../Temperature/Temperature'
@@ -18,22 +18,27 @@ function LocationCard({location}){
     }
 
     if(!data && !fetchedData){
-        getWeatherData({
-            q : location.value,
-            id : location.id,
+        const params = {
             units : 'metric'
-        }).then((resp)=> {
+        }
+
+        if(location.id){
+            params.id = location.id
+            params.q = location.value
+        }else{
+            params.lat = location.coords.lat
+            params.lon = location.coords.long
+        }
+        
+        getWeatherData(params).then((resp)=> {
             setData(resp)
-            console.log("Response:"+resp);
         })
 
         setFetchedData(true)
     }
     
     if(!data)
-        return (
-            <span className="loading-spinner"><ScaleLoader size={42} loading color={"#429dac"}/></span>
-        )
+        return <LoadingSpinner />
         
     return (
         <div className="location-card">
