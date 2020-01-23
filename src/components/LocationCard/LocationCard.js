@@ -68,9 +68,6 @@ function LocationCard({location}){
                         <DayForecast key={idx} data={data.forecast[day]} />
                     ))
                 }
-                <div className="col-4">
-
-                </div> 
             </div>
         </div>
     )

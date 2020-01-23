@@ -64,7 +64,6 @@ class NewLocation extends React.Component{
         this.setState({
             locations : locations
         },()=>{
-            console.log(locations)
             window.localStorage.setItem("locations",JSON.stringify(locations))
             history.push('/')
         })

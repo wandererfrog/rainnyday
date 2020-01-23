@@ -2,7 +2,7 @@ import config from '../config'
 
 export function getWeatherData(params){
     if(!params)
-        return;
+        return null;
 
     let qs = formatParams(params)
 
@@ -18,7 +18,7 @@ export function getWeatherData(params){
         })
 }
 
-function formatParams(params){
+export function formatParams(params){
     if(!params)
         return "";
 
@@ -26,5 +26,10 @@ function formatParams(params){
     for (let i = 0; i < Object.keys(params).length; i++) {
         qs += Object.keys(params)[i]+"="+params[Object.keys(params)[i]]+"&";
     }
+    
+    if(qs.charAt(qs.length-1) === "&"){
+        qs = qs.substring(0,qs.length-1);
+    }
+
     return qs;
 }

@@ -5,8 +5,6 @@ import Slider from "react-slick";
 import LocationCard from './components/LocationCard/LocationCard'
 import AddLocation from './components/AddLocation/AddLocation'
 
-import './App.css';
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -14,9 +12,6 @@ class App extends React.Component {
       weatherId : null,
       locations : JSON.parse(window.localStorage.getItem("locations")) || []
     }
-  }
-
-  componentDidMount(){
   }
 
   render(){
@@ -29,7 +24,8 @@ class App extends React.Component {
       <div className="App background-gradient container">
         <Slider arrows={false} swipeToSlide >
           {
-            locations.map((local,idx) => <LocationCard location={local} key={idx} /> )
+            locations
+              .map((local,idx) => <LocationCard location={local} key={idx} /> )
           }
           <AddLocation />
         </Slider>

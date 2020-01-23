@@ -3,12 +3,6 @@ import {XAxis,YAxis,Area,AreaChart,ResponsiveContainer} from 'recharts'
 
 import './TemperatureGraph.css'
 
-const CustomizedTick = ({payload}) => {
-    console.log(payload.value)
-    // return <span className="temperature-graph-tick">{payload.value}</span>
-    return payload.value
-};
-
 export default function TemperatureGraph({data}){
 
     if(!data)
@@ -29,7 +23,6 @@ export default function TemperatureGraph({data}){
                 margin={{top: 5, right: 0, left: -30, bottom: 5}}>
                 <XAxis dataKey="label" fontSize={10} />
                 <YAxis fontSize={10}/>
-                {/* <Line type="monotone"  dataKey="value" stroke="#8884d8" dot={false}/> */}
                 <Area type="monotone" dataKey="value" stroke="#f9f9f9" fill="#373f48" />
             </AreaChart>
         </ResponsiveContainer>

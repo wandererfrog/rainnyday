@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import './WeatherIcon.css'
 
 export default function WeatherIcon({iconId,description}){
@@ -9,3 +11,8 @@ export default function WeatherIcon({iconId,description}){
         </div>
     )
 }
+
+WeatherIcon.propTypes = {
+    iconId : PropTypes.number.isRequired,
+    description : PropTypes.string.isRequired,
+};
