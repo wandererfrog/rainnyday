@@ -1,5 +1,5 @@
 const config = {
-    apiUrl : 'http://localhost:5000'
+    apiUrl : 'http://api-rainydayherokuapp.com'
 }
 
 export default config;
