@@ -1,9 +1,9 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom'
+import {Redirect,withRouter} from 'react-router-dom'
 import Slider from "react-slick";
 
 import LocationCard from './components/LocationCard/LocationCard'
-import AddLocation from './components/AddLocation/AddLocation'
+import OptionsMenu from './components/OptionsMenu/OptionsMenu'
 
 class App extends React.Component {
   constructor(props){
@@ -14,8 +14,17 @@ class App extends React.Component {
     }
   }
 
+  goTo(path){
+    this.props.history.push(`/${path}`);
+  }
+
   render(){
     const {locations} = this.state
+
+    const options = [
+      { label : "Add Location" , callback : this.goTo.bind(this,'new')},
+      { label : "About" , callback : this.goTo.bind(this,'about')}
+    ]
 
     if(locations.length === 0)
       return <Redirect to="/new" />
@@ -27,11 +36,11 @@ class App extends React.Component {
             locations
               .map((local,idx) => <LocationCard location={local} key={idx} /> )
           }
-          <AddLocation />
         </Slider>
+        <OptionsMenu options={options} />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

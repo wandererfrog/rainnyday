@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "animate.css/animate.min.css"
 
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Routes from './routes'
 

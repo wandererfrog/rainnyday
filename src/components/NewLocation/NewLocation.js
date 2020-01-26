@@ -99,6 +99,11 @@ class NewLocation extends React.Component{
             },options);
     }
 
+    goBack(){
+        console.log("Go back!")
+        this.props.history.goBack()
+    }
+
     render(){
         const {cities,loading} = this.state
         
@@ -115,6 +120,9 @@ class NewLocation extends React.Component{
                         
                     </button>
                 </div>
+                <button className="close-btn" onClick={this.goBack.bind(this)}>
+                    <i className="options-menu-button lnr lnr-cross"></i>
+                </button>
             </div>
         )
     }

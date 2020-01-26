@@ -1,0 +1,38 @@
+.options-menu-icon{
+    width: 24px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background-color:
+    transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options-menu-dropdown{
+    position: absolute;
+    top: 44px;
+    background-color:#fff;
+    padding: 8px;
+    right: 17px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 122px;
+    text-align: center;
+}
+.options-menu-item:hover{
+    color: #429dac;
+}
+
+.options-menu-button{
+    color:#f9f9f9;
+    font-size: 20px;
+}
+
+.options-menu-item{
+    margin-bottom: 8px;
+    margin-top: 5px;
+}

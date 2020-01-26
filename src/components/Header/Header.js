@@ -10,10 +10,10 @@ export default function({location}){
                 {location}
             </div>
             <div className="header-time">
-                {`${date.getHours()}:${date.getMinutes()}`}
+                {`${(date.getHours() < 10) ? "0"+date.getHours() : date.getHours() }:${ (date.getMinutes() < 10) ? "0"+date.getMinutes() : date.getMinutes()}`}
             </div>
             <div className="header-date">
-                {`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`}
+                {`${date.getFullYear()}-${ (date.getMonth()+1 < 10) ? "0"+(date.getMonth()+1) : date.getMonth()+1 }-${(date.getDate() < 10) ? date.getDate() : date.getDate() }`}  
             </div>
         </div>
     )

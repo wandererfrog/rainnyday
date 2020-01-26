@@ -11,3 +11,13 @@
     text-align: center;
     color:#fff;
 }
+
+.close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 28px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+}

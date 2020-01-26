@@ -6,6 +6,7 @@ import {
   } from "react-router-dom";
 
 import App from './App'
+import About from './components/About/About'
 import NewLocation from './components/NewLocation/NewLocation'  
 
 function routes(){
@@ -14,6 +15,9 @@ function routes(){
             <Switch>
                 <Route path="/new">
                     <NewLocation />
+                </Route>
+                <Route path="/about">
+                    <About />
                 </Route>
                 <Route path="/">
                     <App />
