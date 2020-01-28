@@ -69,60 +69,55 @@ class NewLocation extends React.Component{
         })
     }
 
-    addCurrentPosition(){
-        const {locations} = this.state   
+    // addCurrentPosition(){
+    //     const {locations} = this.state   
 
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        }
+    //     const options = {
+    //         enableHighAccuracy: true,
+    //         timeout: 5000,
+    //         maximumAge: 0
+    //     }
         
-        this.setState({
-            loading : true
-        })
+    //     this.setState({
+    //         loading : true
+    //     })
 
-        navigator.geolocation
-            .getCurrentPosition((pos)=>{
-                locations.push({
-                    label : "Current",
-                    value : "current",
-                    coords : {
-                        lat : pos.coords.latitude,
-                        long : pos.coords.longitude
-                    }
-                })
-                this.updateLocationStore(locations)
-            },(err)=>{
-                console.log(err)
-                return null;
-            },options);
-    }
+    //     navigator.geolocation
+    //         .getCurrentPosition((pos)=>{
+    //             locations.push({
+    //                 label : "Current",
+    //                 value : "current",
+    //                 coords : {
+    //                     lat : pos.coords.latitude,
+    //                     long : pos.coords.longitude
+    //                 }
+    //             })
+    //             this.updateLocationStore(locations)
+    //         },(err)=>{
+    //             console.log(err)
+    //             return null;
+    //         },options);
+    // }
 
     goBack(){
-        console.log("Go back!")
         this.props.history.goBack()
     }
 
     render(){
-        const {cities,loading} = this.state
+        const {cities,locations} = this.state
         
         return (
             <div className="new-container container">
                 <div className="new-inner-container">
                     <Select options={cities} onKeyDown={this.setCityName.bind(this)} isClearable ignoreAccents={false} onChange={this.onChange.bind(this)} />
                     <button className="rn-btn rn-btn-add" onClick={() => this.addLocation()}>Add +</button>
-                    <br />or<br />
-                    <button className="rn-btn rn-btn-getpos" onClick={()=> this.addCurrentPosition()}>
-                        {
-                            (loading) ? <LoadingSpinner className="cat"/> : "Get position"
-                        } 
-                        
-                    </button>
                 </div>
-                <button className="close-btn" onClick={this.goBack.bind(this)}>
-                    <i className="options-menu-button lnr lnr-cross"></i>
-                </button>
+                {
+                    (locations.length === 0) ? null :
+                    <button className="close-btn" onClick={this.goBack.bind(this)}>
+                        <i className="options-menu-button lnr lnr-cross"></i>
+                    </button>
+                }
             </div>
         )
     }
